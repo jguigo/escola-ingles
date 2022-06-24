@@ -11,19 +11,19 @@ module.exports = {
          status: {
             type: Sequelize.STRING,
          },
-         docente_id: {
+         estudante_id: {
             allowNull: false,
             type: Sequelize.INTEGER,
             references: {
-               model: "Estudante",
+               model: "Pessoas",
                key: "id",
             },
          },
-         docente_id: {
+         turma_id: {
             allowNull: false,
             type: Sequelize.INTEGER,
             references: {
-               model: "Niveis",
+               model: "Turmas",
                key: "id",
             },
          },

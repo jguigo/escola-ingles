@@ -11,7 +11,7 @@ module.exports = {
          data_inicio: {
             type: Sequelize.DATEONLY,
          },
-         estudante_id: {
+         docente_id: {
             allowNull: false,
             type: Sequelize.INTEGER,
             references: {
@@ -19,11 +19,11 @@ module.exports = {
                key: "id",
             },
          },
-         turma_id: {
+         nivel_id: {
             allowNull: false,
             type: Sequelize.INTEGER,
             references: {
-               model: "Turmas",
+               model: "Niveis",
                key: "id",
             },
          },
