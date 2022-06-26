@@ -49,7 +49,67 @@ class PessoasController {
       const { id } = req.params;
       try {
          await db.Pessoas.destroy({ where: { id } });
-         res.status(204).json({message: `id ${id} deletado!`});
+         res.status(204).json({ message: `id ${id} deletado!` });
+      } catch (error) {
+         return res.status(500).json(error.message);
+      }
+   }
+
+   static async pegarUmaMatricula(req, res) {
+      const { estudanteId, matriculaId } = req.params;
+
+      try {
+         const umaPessoa = await db.Matriculas.findOne({
+            where: {
+               id: Number(matriculaId),
+               estudante_id: Number(estudanteId),
+            },
+         });
+         return res.status(200).json(umaPessoa);
+      } catch (error) {
+         return res.status(500).json(error.message);
+      }
+   }
+
+   static async criaMatricula(req, res) {
+      const { estudanteId } = req.params;
+      const novaMatricula = { ...req.body, estudante_id: Number(estudanteId) };
+
+      try {
+         const novaMatriculaCriada = await db.Matriculas.create(novaMatricula);
+         return res.status(201).json(novaMatriculaCriada);
+      } catch (error) {
+         return res.status(500).json(error.message);
+      }
+   }
+
+   static async atualizaMatricula(req, res) {
+      const { estudanteId, matriculaId } = req.params;
+      const novasInfos = req.body;
+      
+      try {
+         await db.Matriculas.update(novasInfos, {
+            where: {
+               id: Number(matriculaId),
+               estudante_id: Number(estudanteId),
+            },
+         });
+
+         const matriculaAtualizada = await db.Pessoas.findOne({
+            where: { id: Number(matriculaId) },
+         });
+
+         return res.status(200).json(matriculaAtualizada);
+      } catch (error) {
+         return res.status(500).json(error.message);
+      }
+   }
+
+   static async apagaMatricula(req, res) {
+      const { estudanteId, matriculaId } = req.params;
+      try {
+         await db.Matriculas.destroy({ where: { id: Number(matriculaId) } });
+         res.status(204).json({ message: `id ${matriculaId} deletado!` });
       } catch (error) {
          return res.status(500).json(error.message);
       }
