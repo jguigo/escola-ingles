@@ -7,6 +7,6 @@ routes.get("/pessoas", PessoasController.pegaTodasAsPessoas);
 routes.get("/pessoas/:id", PessoasController.pegarUmaPessoa);
 routes.post("/pessoas", PessoasController.criaPessoa);
 routes.put("/pessoas/:id", PessoasController.atualizaPessoa);
-routes.delete("/pessoas/", PessoasController.apagaPessoa);
+routes.delete("/pessoas/:id", PessoasController.apagaPessoa);
 
 module.exports = routes;
