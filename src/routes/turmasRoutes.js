@@ -8,5 +8,6 @@ routes.get("/turmas/:id", TurmasController.pegarUmaTurma);
 routes.post("/turmas", TurmasController.criaTurma);
 routes.put("/turmas/:id", TurmasController.atualizaTurma);
 routes.delete("/turmas/:id", TurmasController.apagaTurma);
+routes.post("/turmas/:id/restaura", TurmasController.restauraTurmas);
 
 module.exports = routes;

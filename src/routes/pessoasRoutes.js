@@ -11,6 +11,7 @@ routes.delete("/pessoas/:id", PessoasController.apagaPessoa);
 
 routes.get('/pessoas/:estudanteId/matricula/:matriculaId', PessoasController.pegarUmaMatricula);
 routes.post('/pessoas/:estudanteId/matricula/matricula') 
+routes.post("/pessoas/:id/restaura", PessoasController.restauraPessoa);
 routes.put('/pessoas/:estudanteId/matricula/:matriculaId', PessoasController.atualizaMatricula);
 routes.delete('/pessoas/:estudanteId/matricula/:matriculaId', PessoasController.apagaMatricula);
 
