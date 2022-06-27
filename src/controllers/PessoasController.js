@@ -55,6 +55,16 @@ class PessoasController {
       }
    }
 
+   static async restauraPessoa(req, res) {
+      const { id } = req.params;
+      try {
+         await db.Pessoas.restore({ where: { id } });
+         return res.status(200).json({message: `id ${id} restaurado`});
+      } catch (error) {
+         return res.status(500).json(error.message);
+      }
+   }
+
    static async pegarUmaMatricula(req, res) {
       const { estudanteId, matriculaId } = req.params;
 
@@ -86,7 +96,7 @@ class PessoasController {
    static async atualizaMatricula(req, res) {
       const { estudanteId, matriculaId } = req.params;
       const novasInfos = req.body;
-      
+
       try {
          await db.Matriculas.update(novasInfos, {
             where: {
