@@ -7,6 +7,6 @@ const routes = Router();
 
 routes.use(pessoasRoutes);
 routes.use(niveisRoutes);
-// routes.use(turmasRoutes);
+routes.use(turmasRoutes);
 
 module.exports = routes;
