@@ -136,6 +136,16 @@ class PessoasController {
          return res.status(500).json(error.message);
       }
    }
+
+   static async pegaMatricula(req, res) {
+      const { estudanteId } = req.params;
+      try {
+         const matriculas = await db.Matriculas.finAll({ where: { id: Number(estudanteId) } });
+         res.status(204).json({matriculas});
+      } catch (error) {
+         return res.status(500).json(error.message);
+      }
+   }
 }
 
 module.exports = PessoasController;
