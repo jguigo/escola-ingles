@@ -17,6 +17,8 @@ routes.get('/pessoas/matricula/disponiveis', PessoasController.pegaTurmasDisponi
 routes.post("/pessoas", PessoasController.criaPessoa);
 routes.post('/pessoas/:estudanteId/matricula/matricula') 
 routes.post("/pessoas/:id/restaura", PessoasController.restauraPessoa);
+routes.post("/pessoas/:estudanteId/cancela", PessoasController.cancelaPessoa);
+
 
 routes.put("/pessoas/:id", PessoasController.atualizaPessoa);
 routes.put('/pessoas/:estudanteId/matricula/:matriculaId', PessoasController.atualizaMatricula);
