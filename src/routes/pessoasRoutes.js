@@ -8,6 +8,10 @@ routes.get("/pessoas/todos", PessoasController.pegaTodasAsPessoas);
 routes.get("/pessoas/:id", PessoasController.pegarUmaPessoa);
 routes.get('/pessoas/:estudanteId/matricula', PessoasController.pegaMatriculas);
 routes.get('/pessoas/:estudanteId/matricula/:matriculaId', PessoasController.pegarUmaMatricula);
+routes.get('/pessoas/matricula/:turmaId/confirmadas', PessoasController.pegaMatriculasPorTurma);
+routes.get('/pessoas/matricula/lotada', PessoasController.pegaTurmasLotadas);
+routes.get('/pessoas/matricula/disponiveis', PessoasController.pegaTurmasDisponiveis);
+
 
 
 routes.post("/pessoas", PessoasController.criaPessoa);
