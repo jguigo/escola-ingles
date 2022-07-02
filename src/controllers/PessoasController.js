@@ -205,17 +205,21 @@ class PessoasController {
    static async cancelaPessoa(req, res) {
       const { estudanteId } = req.params;
       try {
-         await db.Pessoas.update(
-            { ativo: false },
-            { where: { id: estudanteId } }
-         );
-         await db.Matriculas.update(
-            { status: "cancelado" },
-            { where: { estudante_id: estudanteId } }
-         );
-
-         res.status(200).json({
-            message: `matriculas ref. estudante ${estudanteId} canceladas!`,
+         //com o uso da transaction, qualquer umas das operação com o banco que der problema, ele roda um rollback
+         db.sequelize.transaction(async (transacao) => {
+            await db.Pessoas.update(
+               { ativo: false },
+               { where: { id: Number(estudanteId) } },
+               { transaction: transacao }
+            );
+            await db.Matriculas.update(
+               { status: "cancelado" },
+               { where: { estudante_id: Number(estudanteId) } },
+               { transaction: transacao }
+            );
+            res.status(200).json({
+               message: `matriculas ref. estudante ${estudanteId} canceladas!`,
+            });
          });
       } catch (error) {
          return res.status(500).json(error.message);
