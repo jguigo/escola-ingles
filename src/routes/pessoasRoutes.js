@@ -3,8 +3,8 @@ const PessoasController = require("../controllers/PessoasController");
 
 const routes = Router();
 
-routes.get("/pessoas", PessoasController.pegaPessoasAtivas);
-routes.get("/pessoas/todos", PessoasController.pegaTodasAsPessoas);
+routes.get("/pessoas", PessoasController.pegaTodasAsPessoas);
+routes.get("/pessoas/ativas", PessoasController.pegaPessoasAtivas);
 routes.get("/pessoas/:id", PessoasController.pegarUmaPessoa);
 routes.get('/pessoas/:estudanteId/matricula', PessoasController.pegaMatriculas);
 routes.get('/pessoas/:estudanteId/matricula/:matriculaId', PessoasController.pegarUmaMatricula);
