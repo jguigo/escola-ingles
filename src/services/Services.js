@@ -9,16 +9,32 @@ class Services {
       return database[this.nomeDoModelo].findAll();
    }
 
-   async pegaUmRegistro(id){
+   async pegaUmRegistro(id) {
       //
    }
 
-   async criaRegistro(dados){
+   async criaRegistro(dados) {
       //
    }
 
-   async atualizaRegistro(dadosAtualizados, id){
-      //
+   async atualizaRegistro(dadosAtualizados, id, trasacao = {}) {
+      return database[this.nomeDoModelo].update(
+         dadosAtualizados,
+         {
+            where: { id },
+         },
+         trasacao
+      );
+   }
+
+   async atualizaRegistros(dadosAtualizados, where, trasacao = {}) {
+      return database[this.nomeDoModelo].update(
+         dadosAtualizados,
+         {
+            where: { ...where },
+         },
+         trasacao
+      );
    }
 }
 
