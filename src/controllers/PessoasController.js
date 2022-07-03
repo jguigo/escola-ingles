@@ -1,10 +1,13 @@
-const db = require("../database/models");
-const Sequelize = require("sequelize");
+// const db = require("../database/models");
+// const Sequelize = require("sequelize");
+const { PessoasServices } = require('../services')
+
+const pessoasServices = new PessoasServices();
 
 class PessoasController {
    static async pegaPessoasAtivas(req, res) {
       try {
-         const pessoasAtivas = await db.Pessoas.findAll();
+         const pessoasAtivas = await pessoasServices.pegaRegistrosAtivos();
          return res.status(200).json(pessoasAtivas);
       } catch (error) {
          return res.status(500).json(error.message);
@@ -13,8 +16,7 @@ class PessoasController {
 
    static async pegaTodasAsPessoas(req, res) {
       try {
-         //.scope("todos") --> foi definido no modelo de Pessoas, e para utiliza-lo, coloco antes do método que quero utilizar
-         const todasAsPessoas = await db.Pessoas.scope("todos").findAll();
+         const todasAsPessoas = await pessoasServices.pegaTodosOsRegistros();
          return res.status(200).json(todasAsPessoas);
       } catch (error) {
          return res.status(500).json(error.message);
